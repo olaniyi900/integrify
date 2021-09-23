@@ -1,28 +1,50 @@
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import Home from './components/Home';
 import User from './components/User';
+import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 function App() {
+  const [UserId, setUserId] = useState(null);
+  const [users, setUsers] = useState([]);
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    const data = async () => {
+      const res = await axios('https://jsonplaceholder.typicode.com/users');
+      setUsers(res.data);
+    };
+    data();
+  }, []);
+
+  const showUser = (id) => {
+    setUserId(id);
+
+    const url = `https://jsonplaceholder.typicode.com/users/${id}`;
+    const data = async () => {
+      const res = await axios(url);
+      setUser(res.data);
+    };
+    data();
+  };
+
   return (
     <div className='App'>
       <Router>
-        <ul>
+        <ul style={{ listStyle: 'none' }}>
           <li>
             <Link to='/'>Home</Link>
-          </li>
-          <li>
-            <Link to='/user'>User</Link>
           </li>
         </ul>
 
         <Switch>
           <Route exact path='/'>
-            <Home />
+            <Home users={users} showUser={showUser} />
           </Route>
-          <Route path='/user/:id'>
-            <User />
-          </Route>
+          <Route
+            path='/:userId'
+            children={<User user={user} UserId={UserId} />}
+          ></Route>
         </Switch>
       </Router>
     </div>

@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+
 import '../../src/App.css';
 import Card from './Card';
 
-const Home = () => {
-  const [users, setUsers] = useState([]);
-  useEffect(() => {
-    const data = async () => {
-      const res = await axios('https://jsonplaceholder.typicode.com/users');
-      setUsers(res.data);
-    };
-    data();
-  }, []);
+const Home = ({ users, showUser }) => {
+  const userId = (id) => {
+    showUser(id);
+  };
   return (
     <div className='home'>
-      <Card users={users} />
+      <Card users={users} userId={userId} />
     </div>
   );
 };
