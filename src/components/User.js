@@ -4,14 +4,12 @@ const User = ({ user }) => {
   const style = {
     height: '300px',
     width: '250px',
-    margin: '10px',
-    padding: '20px 10px',
-    'border-radius': '10px',
-    'box-shadow': '2px 3px 3px #ccc',
+    marginTop: '100px',
+    marginLeft: '400px',
+    padding: '20px 20px',
+    borderRadius: '10px',
+    boxShadow: '2px 3px 3px #ccc',
     border: '1px solid #fff',
-    display: 'flex',
-    justifyContent: 'center',
-    'align-items': 'center',
   };
 
   return (
@@ -21,8 +19,8 @@ const User = ({ user }) => {
         <li>Username: {user.username}</li>
         <li>Phone:{user.phone}</li>
         <li>email:{user.email}</li>
-        <li>Company: {user.company.name}</li>
         <li>Website:{user.website}</li>
+        <li>Company: {user.company.name}</li>
         <li>
           Address:{' '}
           <ul>

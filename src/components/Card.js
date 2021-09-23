@@ -13,7 +13,7 @@ const Card = ({ users, userId }) => {
         <div className='card' key={user.id}>
           <h3>{user.name}</h3>
           <p>{user.email}</p>
-          <Link to='/user'>
+          <Link to={`/user/${user.id}`}>
             <Button onClick={() => handleClick(user.id)} />
           </Link>
         </div>
