@@ -24,6 +24,7 @@ function App() {
     const data = async () => {
       const res = await axios(url);
       setUser(res.data);
+      console.log(res.data);
     };
     data();
   };
@@ -41,10 +42,9 @@ function App() {
           <Route exact path='/'>
             <Home users={users} showUser={showUser} />
           </Route>
-          <Route
-            path='/:userId'
-            children={<User user={user} UserId={UserId} />}
-          ></Route>
+          <Route path='/user'>
+            <User user={user} UserId={UserId} />
+          </Route>
         </Switch>
       </Router>
     </div>
